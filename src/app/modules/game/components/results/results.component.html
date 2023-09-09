@@ -1,0 +1,10 @@
+<mat-list data-testid="listElement" class="listContainer">
+  <mat-list-item *ngFor="let h of history">
+    <div class="box">
+      {{h.equation}}   {{h.userInput}}
+    </div>
+    <mat-icon [ngClass]="h.valid ? 'greenyellow' : 'darkred'"
+              aria-hidden="false" aria-label="Equation status">{{h.valid ? 'done' : 'close'}}
+    </mat-icon>
+  </mat-list-item>
+</mat-list>

@@ -1,0 +1,9 @@
+<app-custom-input [value]="equationData.equation"
+                  [disabled]="true"
+                  type="'text'"
+                  [disableOnChangeEvent]="true"/>
+<app-custom-input [autofocus]="true"
+                  [label]="'Enter the result'"
+                  (onValueChange)="onChange($event)"/>
+<app-results [history]="getHistory() | async"/>
+

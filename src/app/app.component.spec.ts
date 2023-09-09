@@ -12,16 +12,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'Calculation_Game' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Calculation_Game');
-  });
 
-  it('should render title', () => {
+  it('Html file should have router-outlet element', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Calculation_Game app is running!');
+    expect(compiled.querySelector('#routerOutletRoot')).toBeTruthy();
   });
 });

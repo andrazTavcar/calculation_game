@@ -1,0 +1,11 @@
+<mat-form-field>
+  <mat-label>{{label}}</mat-label>
+  <input data-testid="inputElement"
+         #inputElement
+         matInput
+         [value]="value"
+         [disabled]="disabled"
+         [autofocus]="autofocus"
+         type="type"
+         (change)="emitValue($event)">
+</mat-form-field>

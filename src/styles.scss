@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+//  Background
+  background-color: #e5e5f7;
+  background-image:  linear-gradient(#673ab7 1px, transparent 1px), linear-gradient(to right, #673ab7 1px, #e5e5f7 1px);
+  background-size: 20px 20px;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

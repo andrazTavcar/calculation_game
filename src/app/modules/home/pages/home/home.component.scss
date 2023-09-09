@@ -1,0 +1,24 @@
+
+mat-card-content {
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.buttonContainer {
+  margin-block: auto;
+  display: flex;
+  flex-direction: column;
+
+  .button {
+    display: block;
+    margin-inline: auto;
+  }
+}
+
+
+
