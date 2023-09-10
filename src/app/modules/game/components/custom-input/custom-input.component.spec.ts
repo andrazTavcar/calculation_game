@@ -19,8 +19,8 @@ describe('CustomInputComponent', () => {
     });
     fixture = TestBed.createComponent(CustomInputComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -40,9 +40,13 @@ describe('CustomInputComponent', () => {
   });
 
   it('should have set input value',  async () => {
-    component.value = "5 + 5 ="
+    component.type = "text";
+    fixture.detectChanges();
+
+    component.inputValue = "5 + 5 =";
+
     const formField = await loader.getHarness(MatFormFieldHarness);
     const input = (await formField.getControl()) as MatInputHarness;
-    expect(await input.getValue()).toEqual("5 + 5 =");
+    expect( await input.getValue()).toEqual("5 + 5 =");
   });
 });

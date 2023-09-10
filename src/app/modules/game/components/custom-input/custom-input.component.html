@@ -3,9 +3,8 @@
   <input data-testid="inputElement"
          #inputElement
          matInput
-         [value]="value"
+         [value]="inputValue"
          [disabled]="disabled"
-         [autofocus]="autofocus"
-         type="type"
+         [type]="type"
          (change)="emitValue($event)">
 </mat-form-field>

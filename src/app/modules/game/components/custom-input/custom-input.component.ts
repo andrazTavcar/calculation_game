@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter, Input,
@@ -16,7 +17,9 @@ import {MatInputModule} from "@angular/material/input";
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss']
 })
-export class CustomInputComponent {
+export class CustomInputComponent implements AfterViewInit {
+  @Input()
+  type: string = "number";
   @Input()
   disabled: boolean = false;
   @Input()
@@ -24,22 +27,24 @@ export class CustomInputComponent {
   @Input()
   autofocus: boolean = false;
   @Input()
-  value: string | null = null;
+  inputValue: string | null = null;
   @Input()
   disableOnChangeEvent: boolean = false;
-  @Input()
-  type: string = "number";
+
 
   @Output()
   onValueChange: EventEmitter<number> = new EventEmitter<number>();
 
   @ViewChild('inputElement') inputEl: ElementRef;
 
-
   emitValue(event: any): void {
     if (!this.disableOnChangeEvent) {
       this.onValueChange.emit(event.target.value);
       this.inputEl.nativeElement.value = null;
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.autofocus && setTimeout(() =>   this.inputEl.nativeElement.focus(), 0);
   }
 }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Equation, EquationResult, MathOperationFunc, Operation} from "../../shared/custom-types";
+
 @Injectable({
   providedIn: "root"
 })
@@ -25,7 +26,7 @@ export class CalculatorService {
 
 
   private generateRandomWholeNumber(maxNumber?: number): number {
-    // Generates whole numbers between 0 and maxNumber, default is 20
+    // Generates whole number between 0 and maxNumber, default is 20
     const max = maxNumber != null ? maxNumber + 1 : 21;
     return Math.floor(Math.random() * max);
   }
@@ -49,12 +50,11 @@ export class CalculatorService {
   validateAndGenerateNewEquation(data: Equation, userInput: number): void {
     const valid = +userInput === data.result;
 
-    // We push data to the beginning of the array so that user se the latest equation result on top of the list
+    // We push data to the beginning of the array so that user se the latest equation result on top(beginning) of the list
     this.history.unshift({
       equation: data.equation, userInput, valid
     })
     this.historySubject.next(this.history);
     this.generateRandomEquation();
   }
-
 }
