@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CustomInputComponent} from "../custom-input/custom-input.component";
 import {ResultsComponent} from "../results/results.component";
@@ -17,15 +17,14 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 })
 export class GameContainerComponent implements OnInit {
   private calculatorService = inject(CalculatorService);
-
+  destroyRef = inject(DestroyRef);
   equationData: Equation;
 
 
   ngOnInit(): void {
     this.calculatorService.generateRandomEquation();
-
     this.calculatorService.equation$.pipe(
-     takeUntilDestroyed())
+     takeUntilDestroyed(this.destroyRef))
     .subscribe((data) => {
       if (data != null)
         this.equationData = data;
