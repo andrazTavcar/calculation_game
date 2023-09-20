@@ -5,6 +5,7 @@ import {ResultsComponent} from "../results/results.component";
 import {Observable, Subject, takeUntil} from "rxjs";
 import {CalculatorService} from "../../../../core/services/calculator.service";
 import {Equation, EquationResult} from "../../../../shared/custom-types";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 
 @Component({
@@ -14,9 +15,8 @@ import {Equation, EquationResult} from "../../../../shared/custom-types";
   templateUrl: './game-container.component.html',
   styleUrls: ['./game-container.component.scss']
 })
-export class GameContainerComponent implements OnInit, OnDestroy {
+export class GameContainerComponent implements OnInit {
   private calculatorService = inject(CalculatorService);
-  private notifier = new Subject()
 
   equationData: Equation;
 
@@ -25,7 +25,7 @@ export class GameContainerComponent implements OnInit, OnDestroy {
     this.calculatorService.generateRandomEquation();
 
     this.calculatorService.equation$.pipe(
-      takeUntil(this.notifier))
+     takeUntilDestroyed())
     .subscribe((data) => {
       if (data != null)
         this.equationData = data;
@@ -38,11 +38,5 @@ export class GameContainerComponent implements OnInit, OnDestroy {
 
   getHistory(): Observable<Array<EquationResult>> {
     return this.calculatorService.history$;
-  }
-
-
-  ngOnDestroy(): void {
-    this.notifier.next(true);
-    this.notifier.complete();
   }
 }
